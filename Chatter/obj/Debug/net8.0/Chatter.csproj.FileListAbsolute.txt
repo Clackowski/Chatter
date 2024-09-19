@@ -1,0 +1,15 @@
+/Users/christopherlackowski/Desktop/RandomProjects/ChatterProject/Chatter/Chatter/bin/Debug/net8.0/Chatter
+/Users/christopherlackowski/Desktop/RandomProjects/ChatterProject/Chatter/Chatter/bin/Debug/net8.0/Chatter.deps.json
+/Users/christopherlackowski/Desktop/RandomProjects/ChatterProject/Chatter/Chatter/bin/Debug/net8.0/Chatter.runtimeconfig.json
+/Users/christopherlackowski/Desktop/RandomProjects/ChatterProject/Chatter/Chatter/bin/Debug/net8.0/Chatter.dll
+/Users/christopherlackowski/Desktop/RandomProjects/ChatterProject/Chatter/Chatter/bin/Debug/net8.0/Chatter.pdb
+/Users/christopherlackowski/Desktop/RandomProjects/ChatterProject/Chatter/Chatter/obj/Debug/net8.0/Chatter.GeneratedMSBuildEditorConfig.editorconfig
+/Users/christopherlackowski/Desktop/RandomProjects/ChatterProject/Chatter/Chatter/obj/Debug/net8.0/Chatter.AssemblyInfoInputs.cache
+/Users/christopherlackowski/Desktop/RandomProjects/ChatterProject/Chatter/Chatter/obj/Debug/net8.0/Chatter.AssemblyInfo.cs
+/Users/christopherlackowski/Desktop/RandomProjects/ChatterProject/Chatter/Chatter/obj/Debug/net8.0/Chatter.csproj.CoreCompileInputs.cache
+/Users/christopherlackowski/Desktop/RandomProjects/ChatterProject/Chatter/Chatter/obj/Debug/net8.0/Chatter.sourcelink.json
+/Users/christopherlackowski/Desktop/RandomProjects/ChatterProject/Chatter/Chatter/obj/Debug/net8.0/Chatter.dll
+/Users/christopherlackowski/Desktop/RandomProjects/ChatterProject/Chatter/Chatter/obj/Debug/net8.0/refint/Chatter.dll
+/Users/christopherlackowski/Desktop/RandomProjects/ChatterProject/Chatter/Chatter/obj/Debug/net8.0/Chatter.pdb
+/Users/christopherlackowski/Desktop/RandomProjects/ChatterProject/Chatter/Chatter/obj/Debug/net8.0/Chatter.genruntimeconfig.cache
+/Users/christopherlackowski/Desktop/RandomProjects/ChatterProject/Chatter/Chatter/obj/Debug/net8.0/ref/Chatter.dll
