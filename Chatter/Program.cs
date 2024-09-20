@@ -7,83 +7,62 @@ namespace Chatter
     {
         static void Main(string[] args)
         {
-            // <username, list of messages>
-            var users = new Dictionary<string, List<string>>();
-            string? currentUser = null;
-
-            while (true)
+            using (var db = new MessagesDbContext())
             {
-                if (currentUser == null)
+                while (true)
                 {
-                    Console.WriteLine("\nEnter a username to log in or type 'exit' to quit");
-                    string username = Console.ReadLine();
-
-                    if (username.ToLower() == "exit")
-                    {
-                        break;
-                    }
-                
-                    if (!users.ContainsKey(username))
-                    {
-                        users[username] = new List<string>();
-                    }
-
-                    currentUser = username;
-                    Console.WriteLine($"Welcome {username}!");
-                }
-                else {
                     Console.WriteLine("\nEnter the number of the action you wish to perform:");
                     Console.WriteLine("1: Send a message");
                     Console.WriteLine("2: View messages");
-                    Console.WriteLine("3: Logout");
-                    Console.WriteLine("4: Quit program");
-                    string action = Console.ReadLine();
+                    Console.WriteLine("3: Quit program");
+                    string? action = Console.ReadLine();
 
                     if (action == "1")
                     {
-                        Console.WriteLine("\nEnter a message to send.");
-                        string? message = Console.ReadLine();
+                        Console.WriteLine("\nEnter your name");
+                        string? sender = Console.ReadLine();
 
-                        Console.WriteLine("\nWho do you want to send the message to?");
+                        Console.WriteLine("\nEnter the recipient's name");
                         string? recipient = Console.ReadLine();
 
-                        if (!users.ContainsKey(recipient))
+                        Console.WriteLine("\nEnter the message you want to send");
+                        string? content = Console.ReadLine();
+
+                        var message = new Message
                         {
-                            Console.WriteLine("This user does not exist");
-                            continue;
-                        }
+                            Sender = sender,
+                            Recipient = recipient,
+                            Content = content,
+                        };
 
-                        message += $" ~ from {currentUser}";
+                        db.Messages.Add(message);
+                        db.SaveChanges();
 
-                        var messages = users[recipient];
-                        messages.Add(message);
-
-                        Console.WriteLine($"Message sent to {recipient}.");
+                        Console.WriteLine("Message sent!");
                     }
                     else if (action == "2")
                     {
-                        Console.WriteLine("\nDisplaying messages...");
-                        foreach (var message in users[currentUser])
+                        Console.WriteLine("\nEnter your name to view messages.");
+                        string? user = Console.ReadLine();
+
+                        var messages = db.Messages.Where(m => m.Recipient == user).ToList();
+
+                        Console.WriteLine("\nBelow are your messages:");
+                        foreach (var message in messages)
                         {
-                            Console.WriteLine(message);
+                            Console.WriteLine($"{message.Content} from {message.Sender}");
                         }
+
                     }
                     else if (action == "3")
                     {
-                        currentUser = null;
-                        Console.WriteLine("Logged out.");
-                        continue;
-                    }
-                    else if (action == "4")
-                    {
                         Console.WriteLine("Quitting program...");
                         break;
-                    }
+                    } 
                     else 
                     {
                         Console.WriteLine("Invalid Input");
                     }
-
                 }
             }
         }
