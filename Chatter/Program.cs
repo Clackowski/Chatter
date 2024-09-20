@@ -9,7 +9,8 @@ namespace Chatter
         {
             using (var db = new MessagesDbContext())
             {
-                while (true)
+                bool again = true;
+                while (again)
                 {
                     Console.WriteLine("\nEnter the number of the action you wish to perform:");
                     Console.WriteLine("1: Send a message");
@@ -17,51 +18,67 @@ namespace Chatter
                     Console.WriteLine("3: Quit program");
                     string? action = Console.ReadLine();
 
-                    if (action == "1")
+                    switch (action)
                     {
-                        Console.WriteLine("\nEnter your name");
-                        string? sender = Console.ReadLine();
+                        case "1":
+                            Console.WriteLine("\nEnter your name");
+                            string? sender = Console.ReadLine();
+                            if (string.IsNullOrWhiteSpace(sender))
+                            {
+                                Console.WriteLine("Sender cannot be empty.");
+                                break;
+                            }
 
-                        Console.WriteLine("\nEnter the recipient's name");
-                        string? recipient = Console.ReadLine();
+                            Console.WriteLine("\nEnter the recipient's name");
+                            string? recipient = Console.ReadLine();
+                            if (string.IsNullOrWhiteSpace(recipient))
+                            {
+                                Console.WriteLine("Recipient cannot be empty.");
+                                break;
+                            }
 
-                        Console.WriteLine("\nEnter the message you want to send");
-                        string? content = Console.ReadLine();
+                            Console.WriteLine("\nEnter the message you want to send");
+                            string? content = Console.ReadLine();
+                            if (string.IsNullOrWhiteSpace(content))
+                            {
+                                Console.WriteLine("Message cannot be empty.");
+                                break;
+                            }
 
-                        var message = new Message
-                        {
-                            Sender = sender,
-                            Recipient = recipient,
-                            Content = content,
-                        };
+                            var message = new Message
+                            {
+                                Sender = sender,
+                                Recipient = recipient,
+                                Content = content,
+                            };
 
-                        db.Messages.Add(message);
-                        db.SaveChanges();
+                            db.Messages.Add(message);
+                            db.SaveChanges();
 
-                        Console.WriteLine("Message sent!");
-                    }
-                    else if (action == "2")
-                    {
-                        Console.WriteLine("\nEnter your name to view messages.");
-                        string? user = Console.ReadLine();
+                            Console.WriteLine("Message sent!");
+                            break;
 
-                        var messages = db.Messages.Where(m => m.Recipient == user).ToList();
+                        case "2":
+                            Console.WriteLine("\nEnter your name to view messages.");
+                            string? user = Console.ReadLine();
 
-                        Console.WriteLine("\nBelow are your messages:");
-                        foreach (var message in messages)
-                        {
-                            Console.WriteLine($"{message.Content} from {message.Sender}");
-                        }
+                            var messages = db.Messages.Where(m => m.Recipient == user).ToList();
 
-                    }
-                    else if (action == "3")
-                    {
-                        Console.WriteLine("Quitting program...");
-                        break;
-                    } 
-                    else 
-                    {
-                        Console.WriteLine("Invalid Input");
+                            Console.WriteLine("\nBelow are your messages:");
+                            foreach (var msg in messages)
+                            {
+                                Console.WriteLine($"{msg.Content} from {msg.Sender}");
+                            }
+                            break;
+
+                        case "3":
+                            Console.WriteLine("Quitting program...");
+                            again = false;
+                            break;
+                        
+                        default:
+                            Console.WriteLine("Invalid Input");
+                            break;
                     }
                 }
             }
